@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     for (int i=0;i<nb_items;i++) sum_weight += weights[i];
 
     int **items_per_category = malloc(nb_categories * sizeof(int *));
-    int *timer = malloc(nb_categories * sizeof(int));
+    int *counter = malloc(nb_categories * sizeof(int));
 
     for (int j = 0; j < nb_categories; j++) {
 
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
         }
 
         items_per_category[j][0] = -1;
-        timer[j] = 1;
+        counter[j] = 1;
     }
 
     for (int i = 0; i < nb_items; i++) {
@@ -38,27 +38,26 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-        if (timer[categories_by_item[i]] > nb_item_per_category[categories_by_item[i]]) {
+        if (counter[categories_by_item[i]] > nb_item_per_category[categories_by_item[i]]) {
             printf("Too many items in class %d\n", categories_by_item[i]);
             return 1;
         }
 
-        items_per_category[categories_by_item[i]][timer[categories_by_item[i]]] = i;
-        timer[categories_by_item[i]]++;
+        items_per_category[categories_by_item[i]][counter[categories_by_item[i]]] = i;
+        counter[categories_by_item[i]]++;
     }
 
-    int *p=malloc((nb_categories+1)*sizeof(int));
+    int *g_S=malloc((nb_categories+1)*sizeof(int));
     for(int i=0;i<nb_categories;i++){
-        p[i]=0;
+        g_S[i]=0;
     }
 
-    p[nb_categories]=sum_weight;
+    g_S[nb_categories]=sum_weight;
 
-    //printf("ALL IZZ WELL");
 
 
     TreeNDS* res=initializationTreeNDS(nb_categories+1,nb_categories+1,4,100);
-    TreeSearch(res,items_per_category,nb_item_per_category,0,nb_categories,p,weights);
+    TreeSearch(res,items_per_category,nb_item_per_category,0,nb_categories,g_S,weights);
 
     end = clock();
     double time_spent = (double)(end - start) / CLOCKS_PER_SEC;

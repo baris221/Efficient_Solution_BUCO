@@ -79,4 +79,3 @@ void read_instance(const char* filename){
 
     fclose(file);
 }
-

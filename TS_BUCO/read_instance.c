@@ -14,7 +14,7 @@ int nb_items=0;
 void read_instance(const char* filename){
     FILE* file = fopen(filename, "r");
     if (!file) {
-        perror("Erreur d'ouverture du fichier");
+        perror("Error opening file");
         return;
     }
 
