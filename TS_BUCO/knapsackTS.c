@@ -7,6 +7,7 @@
 
 void TreeSearch(TreeNDS* archive,int** items_per_category,int *nb_item_per_category,int j,int nb_categories,int *g_S,const int* weights){
 
+    // We check if we have reached the last category, if so we add the solution to the archive
     if (j==nb_categories){
         int *obj=(int*)calloc(nb_categories+1, sizeof(int));
         for (int j=0;j<nb_categories+1;j++){
@@ -30,6 +31,7 @@ void TreeSearch(TreeNDS* archive,int** items_per_category,int *nb_item_per_categ
         }
 
         if (j == 1){
+            // Prune if the lightest item we take in the second category is heavier than the heaviest item we do not take in the first category
             if (new_g_S[0] < nb_item_per_category[0]){
                 int item_non_taken = items_per_category[0][new_g_S[0]+1];
                 int item_taken = items_per_category[1][i];
@@ -41,6 +43,7 @@ void TreeSearch(TreeNDS* archive,int** items_per_category,int *nb_item_per_categ
         }
         
         if (j > 1){
+            // Prune if the lightest item we take in the j+1 category is heavier than the heaviest item we do not take in the j category
             int taken_in_class = new_g_S[j-1] - new_g_S[j-2];
 
             if (taken_in_class < nb_item_per_category[j-1]){
@@ -52,8 +55,8 @@ void TreeSearch(TreeNDS* archive,int** items_per_category,int *nb_item_per_categ
                 }
             }
         }
-        
 
+        // We compute the new profile of the solution after taking the i items in the j category
         int weight_to_remove=0;
 
         for (int l=1;l<=i;l++){

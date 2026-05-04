@@ -30,13 +30,6 @@ static size_t binomial_size_t(int n, int k) {
   Access vector i, coordinate j as:
     data[i * k + j]
 
-  Example:
-    for (size_t i = 0; i < count; i++) {
-        for (int j = 0; j < k; j++) {
-            printf("%d ", data[i * k + j]);
-        }
-        printf("\n");
-    }
 */
 int *generate_vectors_flat(int k, int n, size_t *out_count) {
     if (k <= 0 || n < 0 || out_count == NULL) {
