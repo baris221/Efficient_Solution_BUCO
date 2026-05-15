@@ -10,3 +10,5 @@ cd Folder_Name
 Type of the instance : UN for non correlated data or CO for correlated data
 Number of categories k
 Number of items n
+
+In order to execute TV_BUCO you need to execute install_env.sh in TV_BUCO folder
