@@ -305,7 +305,7 @@ The Julia solver prints objective vectors with **negative weight** as the last c
 
 ## 9. Author and license
 
-Developed by **Baris Kaftancioglu** for research on ordinal combinatorial optimization and Pareto-efficient solution enumeration.
+Developed by **Baris Kaftancioglu**, **Thibaut Lust** and **Olivier Spanjaard** for research on ordinal combinatorial optimization and Pareto-efficient solution enumeration.
 
 Distributed under the [MIT License](LICENSE). See `LICENSE` for the full terms.
 
